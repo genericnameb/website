@@ -1,0 +1,98 @@
+body{
+    position:relative;
+    overflow:hidden;
+    width: 100vw;
+}
+
+.container{
+    position:absolute;
+    height:400px;
+    width:140vw;
+    text-align:center;
+}
+
+#upper {
+    height: 400px;
+    width: 10vw;
+    position:absolute;
+    background-color:black;
+    transform: skewX(45deg);
+    overflow:hidden;
+    display:flex;
+    border-right:double red 6px;
+}
+
+.upper-text {
+    transform: skewX(-45deg);
+    position:absolute;
+    white-space: nowrap;
+    color:whitesmoke;
+}
+
+.upper-header{
+    width:60vw;
+    font-size:60px;
+    font-weight:bold;
+    white-space:normal;
+    margin-left: 5vw;
+    margin-top: 50px;
+}
+
+.upper-text .lorem{
+    font-size:30px;
+    width:60vw;
+    white-space: normal;
+    margin-left: 5vw;
+    margin-top: 10px;
+}
+
+.lower {
+    justify-content:flex-end;
+    height: 400px;
+    width: 110vw;
+    left:-10vw;
+    position:absolute;
+    white-space: nowrap;
+    overflow:hidden;
+    background-color:whitesmoke;
+    display:flex;
+}
+
+
+.lower-text{
+    padding-right:20px;
+    width:70vw;
+}
+
+.lower-header{
+    width:60vw;
+    font-size:60px;
+    font-weight:bold;
+    white-space:normal;
+    margin-left: 5vw;
+    margin-top: 50px;
+}
+
+.lower-text .lorem{
+    font-size:30px;
+    width:60vw;
+    white-space: normal;
+    margin-left: 5vw;
+    margin-top: 10px;
+}
+
+.lower .img-container{
+    width: 10vw;
+}
+
+#coke {
+    height:300px;
+    margin-top:40px;
+}
+
+#coke-zero {
+    height:300px;
+    position:fixed;
+    margin-top:40px;
+    transform: skewX(-45deg);
+}

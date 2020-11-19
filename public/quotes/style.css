@@ -1,0 +1,39 @@
+#quote-box{
+    background-color:lightblue;
+    position:relative;
+    border-radius: 10px;
+    border: solid 5px black;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+
+#text{
+    text-align:center;
+    padding: 5vw 5vw;
+    width:100vw;
+}
+
+#author{
+    text-align:right;
+    width: 100vw;
+    padding-right: 10vw;
+}
+
+#quote-container{
+    width:100vw;
+    text-align:center;
+}
+
+#new-quote{
+    border-radius:5px;
+    font-weight:bold;
+    font-size:20px;
+    padding: 5px;
+    border: 1px  solid  black;
+}
+
+#tweet-quote{
+    margin-left:15vw;
+    visibility:hidden;
+}

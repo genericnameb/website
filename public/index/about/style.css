@@ -1,0 +1,140 @@
+a{
+    text-decoration:none;
+    color:whitesmoke;
+}
+
+body {
+    margin: 0;
+    background-color:papayawhip;
+    font-family: 'Roboto', sans-serif;
+    font-size:15px;
+}
+
+h3{
+    margin-left: 60px;
+    margin-right: 60px;
+    font-size:40px;
+}
+
+navbar{
+    display:flex;
+    background-color:black;
+    color:whitesmoke;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    width:100%;
+    top:0;
+    font-size:20px;
+    z-index:1
+}
+
+p{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.divider{
+    opacity:50%;
+    font-size: 25px;
+}
+
+.fab{
+    margin:5px;
+}
+
+.horizontal-pic{
+    width:20vw;
+    align-self:center;
+    margin:10px;
+}
+
+.link-items{
+    padding-top:7px;
+    border:black solid 1px;
+    border-radius:5px;
+    width:5em;
+    height:1.5em;
+    text-align:center
+}
+
+.logo{
+    height:40px;
+    width:40px;
+    object-position: 20% 50%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    margin:5px;
+    margin-left:10px;
+}
+
+.picture{
+    width:60%;
+}
+
+.vertical-pic{
+    width:20vw;
+    margin:10px;
+}
+
+#about{
+    margin-top:80px;
+    font-size:40px;
+}
+
+#external-link{
+    margin-right:10px;
+    font-size:30px;
+}
+
+#home{
+    margin-left:5px;
+}
+
+#internal-link{
+    display:flex;
+    align-items:center;
+}
+
+#logo-container{
+    display:flex;
+    align-items:center;
+}
+
+#maple_container{
+    display:flex;
+    justify-content:center;
+
+}
+
+#middle{
+    font-size:1.5em;
+}
+
+#name{
+    margin-left:-4px;
+}
+
+#top{
+    display:flex;
+    text-align:center;
+    justify-items:center;
+    flex-direction:column;
+}
+
+a:visited { text-decoration: none; color:whitesmoke}
+a:hover { text-decoration: none; color:whitesmoke}
+a:focus { text-decoration: none; color:whitesmoke}
+a:hover, a:active { text-decoration:none; color:whitesmoke}
+
+.link-items:hover{
+    background-color:gray
+    
+}

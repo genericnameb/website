@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Net Worth</title>
+        <style>
+            body {
+                
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                let url=window.location.href;
+                let urlArray=url.split('/')
+                let username = urlArray[urlArray.length-2]
+                const urlOpen = "https://finnhub.io/api/v1/quote?symbol=";
+                const urlEnd = "&token=bubpc2v48v6r5j83rvb0";
+                const STOCKURL = 'http://localhost:3000/api/stock/';
+                const ACCOUNTURL = 'http://localhost:3000/api/users/'+username;
+                
+                userQuery = document.getElementById('user')
+                
+                userQuery.innerHTML = username
+                console.log(ACCOUNTURL)
+            })
+        </script>
+    </head>
+    <body>
+        <h1>Welcome <span id="user"></h1>
+        
+        <h2>Your current porfolio:</h2>
+
+        <h2>Your transaction history:</h2>
+        
+        <h3><a href='#'>Buy/Sell Stocks</a></h3>
+        
+        <h3><a href='/finance/practice'>Go to Practice Account</a></h3>
+    </body>
+</html>

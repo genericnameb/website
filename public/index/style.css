@@ -1,0 +1,195 @@
+a{
+    text-decoration:none;
+    color:whitesmoke;
+}
+
+body {
+    margin: 0;
+    background-color:papayawhip;
+    font-family: 'Roboto', sans-serif;
+}
+
+button{
+    position:absolute;
+    left :350px;
+    bottom: 100px;
+}
+
+navbar{
+    display:flex;
+    background-color:black;
+    color:whitesmoke;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    width:100%;
+    top:0;
+    font-size:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.chat-box{
+    background-color:white;
+    height: 80px;
+    width: 800px;
+    position: fixed;
+    left:200px;
+    top:80px;
+    border-radius:10px;
+    border: 1px solid black;
+}
+
+.divider{
+    opacity:50%;
+    font-size: 25px;
+}
+
+.fab{
+    margin:5px;
+}
+
+.hidden{
+    visibility:hidden;
+}
+
+.intro-text{
+    font-size:60px;
+    text-align:center;
+    font-weight:bold;
+    -webkit-text-stroke-width:0.5px;
+    -webkit-text-stroke-color:rgb(224, 210, 210);
+}
+
+.link-items{
+    padding-top:7px;
+    border:black solid 1px;
+    border-radius:5px;
+    width:5em;
+    height:1.5em;
+    text-align:center
+}
+
+.logo{
+    height:40px;
+    width:40px;
+    object-position: 20% 50%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    margin:5px;
+    margin-left:10px;
+}
+
+.profile-center{
+    height:20vw;
+    width:20vw;
+    position:relative;
+    object-position: 20% 50%;
+    object-fit: cover;
+    overflow: hidden;
+    top: 5vh;
+    left:40vw;
+    border: 3px solid black;
+    border-radius: 50%;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+
+.profile-left{
+    height:150px;
+    width:150px;
+    object-position: 20% 50%;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    position:fixed;
+    top: 70px;
+    left: 30px;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    border: 3px solid black;
+}
+
+.project{
+    width:275px;
+    height:275px;
+    background-color:gray;
+    margin:25px;
+    padding:10px;
+    font-size:30px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#external-link{
+    margin-right:10px;
+    font-size:30px;
+}
+
+#home{
+    margin-left:5px;
+}
+
+#internal-link{
+    display:flex;
+    align-items:center;
+}
+
+#logo-container{
+    display:flex;
+    align-items:center;
+}
+
+#name{
+    margin-top: 5vh;
+}
+
+#upper {
+    /* background-image: url('maple.jpg');
+    background-size:100vw;
+    overflow: hidden;
+    position: relative;
+    background-repeat:no-repeat;
+    height: 100vh; */
+    margin-top:100px;
+}
+
+#profile-container{
+    height:25vw;
+}
+
+#project-container{
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:5vw;
+    justify-content:center;
+}
+
+#textbox{
+    font-size:18px;
+    padding:5px;
+}
+
+a:visited { text-decoration: none; color:whitesmoke}
+a:hover { text-decoration: none; color:whitesmoke}
+a:focus { text-decoration: none; color:whitesmoke}
+a:hover, a:active { text-decoration:none; color:whitesmoke}
+
+.link-items:hover{
+    background-color:gray
+    
+}
+
+.project:hover{
+    background-color:black;
+    transition-duration: 1s;
+    width:325px;
+    height:325px;
+    transition-timing-function: ease-in-out;
+    margin-top:-5px;
+}

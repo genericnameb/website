@@ -1,0 +1,149 @@
+a{
+    text-decoration:none;
+    color:whitesmoke;
+}
+
+body {
+    margin: 0;
+    background-color:papayawhip;
+    font-family: 'Roboto', sans-serif;
+    font-size:15px;
+}
+
+button{
+    background-color:palegoldenrod;
+    border:none;
+    width:10em;
+    height:2em;
+    margin-left:6%;
+    margin-top:5px;
+}
+
+input{
+    border:none;
+    background-color:papayawhip;
+    border-bottom: 3px solid palegoldenrod;
+    padding:4px;
+    font-size:20px;
+}
+
+label{
+    font-size:20px;
+}
+
+navbar{
+    display:flex;
+    background-color:black;
+    color:whitesmoke;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    width:100%;
+    top:0;
+    font-size:20px;
+    z-index:1
+}
+
+textarea{
+    border:none;
+    background-color:papayawhip;
+    border-bottom: 3px solid palegoldenrod;
+    padding:4px;
+    font-size:20px;
+}
+
+.divider{
+    opacity:50%;
+    font-size: 25px;
+}
+
+.fab{
+    margin:5px;
+}
+
+.link-items{
+    padding-top:7px;
+    border:black solid 1px;
+    border-radius:5px;
+    width:5em;
+    height:1.5em;
+    text-align:center
+}
+
+.logo{
+    height:40px;
+    width:40px;
+    object-position: 20% 50%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    margin:5px;
+    margin-left:10px;
+}
+
+#bird-pic{
+    margin-top:80px;
+    height:25vw;
+    position:relative;
+}
+
+#comment-input{
+    width:40em;
+    height:4em;
+}
+
+#comments{
+    margin-left:-45px;
+}
+
+#contact-container{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:100vw;
+}
+
+#contact-form{
+    justify-content:flex-end;
+    text-align:left;
+    margin-left:40vw;
+}
+
+#external-link{
+    margin-right:10px;
+    font-size:30px;
+}
+
+#home{
+    margin-left:5px;
+}
+
+#internal-link{
+    display:flex;
+    align-items:center;
+}
+
+#logo-container{
+    display:flex;
+    align-items:center;
+}
+
+#name{
+    margin-left:-4px;
+}
+
+#pic-container{
+    display:flex;
+    justify-content:center;
+}
+
+a:visited { text-decoration: none; color:whitesmoke}
+a:hover { text-decoration: none; color:whitesmoke}
+a:focus { text-decoration: none; color:whitesmoke}
+a:hover, a:active { text-decoration:none; color:whitesmoke}
+
+.link-items:hover{
+    background-color:gray
+    
+}

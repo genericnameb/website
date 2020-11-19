@@ -1,0 +1,22 @@
+.container {
+    width:400px;
+    height: 800px;
+    background-color: steelblue;
+    position:relative;
+    overflow:hidden;
+}
+
+.runner{
+    background-color:white;
+    height:20px;
+    width: 20px;
+    position:absolute;
+    border: 1px solid black;
+    bottom:20px;
+    left:190px;
+}
+
+.train{
+    background-color:black;
+    position:absolute;
+}

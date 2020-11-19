@@ -1,0 +1,45 @@
+body {
+    background-color:beige;
+}
+
+.container{
+    width:900px;
+    height:900px;
+    position:relative;
+    display:flex;
+    flex-wrap:wrap;
+    align-content:space-between;
+    justify-content:space-evenly;
+}
+
+.head {
+    background-color: darkgreen;
+    height:40px;
+    width:40px;
+    margin: 1px;
+    border: 1px solid black;
+}
+
+.body{
+    background-color: lightgreen;
+    height:40px;
+    width:40px;
+    margin: 1px;
+    border: 1px solid black;
+}
+
+.cookie{
+    background-color: burlywood;
+    height:40px;
+    width:40px;
+    margin: 1px;
+    border: 1px solid black;
+}
+
+.grid{
+    background-color:rgb(217, 233, 247);
+    height:40px;
+    width:40px;
+    margin: 1px;
+    border: 1px solid black;
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Practice Account</title>
+        <style>
+            body{
+                background-color:papayawhip;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .container.transaction{
+                display:grid;
+                font-size:1.1em;
+                font-weight:bold;
+                grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+                margin-left:20px;
+            }
+
+            .container.portfolio{
+                display:grid;
+                font-size:1.1em;
+                font-weight:bold;
+                grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                margin-left:20px;                
+            }
+
+            .container.voo{
+                display:grid;
+                grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                margin-left:20px;    
+            }
+
+            .portfolio{
+                display:grid;
+                grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                margin-left:20px;
+                margin-top:5px; 
+            }
+
+            .transaction{
+                display:grid;
+                justify-content:space-evenly;
+                grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+                margin-left:20px;
+                margin-top:5px;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                const DOMAIN = window.location.origin;
+                let url=window.location.href;
+                let urlArray=url.split('/')
+                let username = urlArray[urlArray.length-2]
+                const STOCKURL = DOMAIN + '/api/stock/';
+                const ACCOUNTURL = DOMAIN + '/api/users/'+username+'/practice';
+                const HOLDINGSURL = DOMAIN + '/api/users/'+username+'/practice/total';
+                const TRANSACTIONSURL = DOMAIN + '/api/users/'+username+'/practice/transactions';
+                const CAPITALURL = DOMAIN + '/api/users/'+username+'/practice/holdings';
+                userQuery = document.getElementById('user');
+                initialCapitalQuery = document.getElementById('initial-capital');
+                vooSharesQuery = document.getElementById('voo-shares')
+                vooInitialPriceQuery = document.getElementById('voo-initial-price')
+                vooCurrentPriceQuery = document.getElementById('voo-current-price')
+                hypotheticalPortfolioQuery = document.getElementById('hypothetical-portfolio')
+                hypotheticalReturnsQuery = document.getElementById('hypothetical-return')
+                returnQuery = document.getElementById('return');
+                transactionsQuery = document.getElementById('transaction-container');
+                holdingsQuery = document.getElementById('holdings');
+                capitalQuery = document.getElementById('capital');
+                portfolioQuery = document.getElementById('portfolio');
+                hypotheticalCashQuery = document.getElementById('hypothetical-cash');
+                hypotheticalTotalReturnQuery = document.getElementById('hypothetical-total-return');
+
+                userQuery.innerHTML = username;
+                
+                let userData
+                let vooData
+                let transactionData
+                let holdingsData
+                let capitalData
+
+                // User Data API Fetch
+                async function getUserData(){
+                    let userResponse = await fetch(ACCOUNTURL);
+                    userData = await userResponse.json();
+                }
+
+                // VOO data API Fetch
+                async function getVOOData(){
+                    let vooResponse = await fetch(STOCKURL + 'VOO');
+                    vooData = await vooResponse.json();
+                }
+                
+                // Transactions fetch
+                async function getTransactionData(){
+                    let transactionResponse = await fetch(TRANSACTIONSURL);
+                    transactionData = await transactionResponse.json();
+                }
+
+                // Capital fetch
+                async function getCapitalData(){
+                    let capitalResponse = await fetch(CAPITALURL);
+                    capitalData = await capitalResponse.json();
+                }
+
+                // Holdings fetch
+                async function getHoldingsData(){
+                    let holdingsResponse = await fetch(HOLDINGSURL);
+                    holdingsData = await holdingsResponse.json();
+                }
+
+                // API Loaded
+                getUserData().then(function(){
+                    initialCapitalQuery.innerHTML = userData.capital;
+                    vooSharesQuery.innerHTML = userData.hypothetical_VOO;
+                    let hypotheticalCash = userData.hypothetical_Cash;
+                    vooInitialPriceQuery.innerHTML = '$' + userData.VOO_price;
+                    getVOOData().then(function(){
+                        vooCurrentPriceQuery.innerHTML = '$' + vooData.c;
+                        let currentVOOValue = (vooData.c * userData.hypothetical_VOO);
+                        hypotheticalPortfolioQuery.innerHTML = '$' + currentVOOValue.toFixed(2);
+                        let vooROI = ((currentVOOValue - userData.capital)/userData.capital * 100).toFixed(2);
+                        hypotheticalReturnsQuery.innerHTML = vooROI + '%';
+                        hypotheticalCashQuery.innerHTML = hypotheticalCash;
+                        let vooTotalReturn = currentVOOValue - (userData.hypothetical_VOO * userData.VOO_price);
+                        hypotheticalTotalReturnQuery.innerHTML = '$' + vooTotalReturn.toFixed(2);
+                    })
+                    getCapitalData().then(function(){
+                        let capital = capitalData[0].capital
+                        capitalQuery.innerHTML = `Your capital is $${capital}`;
+                        let overallROI
+                        let overallValue = 0;
+                        getHoldingsData().then(function(){
+                            for (let i=0; i<holdingsData.length; i+=3){
+                                fetch(STOCKURL+holdingsData[i])
+                                .then(res => res.json())
+                                .then(function(data){
+                                    let currentPrice = data.c;
+                                    let currentShares = holdingsData[i+1];
+                                    let shareCost = holdingsData[i+2];
+                                    let currentValue = currentPrice * currentShares;
+                                    let newHolding = document.createElement("div");
+                                    newHolding.setAttribute('class','portfolio');
+                                    let totalCost = (currentShares * shareCost)
+                                    let totalReturn = currentValue - totalCost;
+                                    let ROI = (totalReturn/totalCost * 100).toFixed(2);
+                                    newHolding.innerHTML = `<span>${holdingsData[i]}</span><span>${currentShares}</span><span>$${shareCost.toFixed(2)}</span><span>$${currentPrice.toFixed(2)}</span><span>$${currentValue.toFixed(2)}</span><span>$${totalReturn.toFixed(2)}</span><span>${ROI}%</span>`
+                                    holdingsQuery.appendChild(newHolding);
+                                    overallValue = overallValue + currentValue
+                                    let asset = overallValue+capital
+                                    portfolioQuery.innerHTML = `Your current assets are worth $${asset.toFixed(2)}`
+                                    returnQuery.innerHTML = `You have made $${(asset - userData.capital).toFixed(2)} or ${((asset-userData.capital)/userData.capital * 100).toFixed(2)}%`
+                                })
+                            }
+                        })
+                    })
+                })
+
+                getTransactionData().then(function(){
+                    for (let x=0; x<transactionData.length; x++){
+                        let newTransaction = document.createElement("div");
+                        newTransaction.setAttribute('class','transaction');
+                        let transactionDate = transactionData[x].date.substring(0,10);
+                        let transactionPrice = transactionData[x].price;
+                        let transactionShares = transactionData[x].shares;
+                        let transactionSymbol = transactionData[x].symbol;
+                        let transactionType = transactionData[x].type;
+                        newTransaction.innerHTML = `<span>${transactionType.toUpperCase()}</span><span>${transactionDate}</span><span>${transactionSymbol}</span><span>${transactionShares}</span><span>$${transactionPrice}</span>`
+                        transactionsQuery.appendChild(newTransaction);
+                    }
+                })
+                
+            })
+        </script>
+    </head>
+    <body>
+        <h1>Welcome <span id="user"></h1>
+        <p>Initial Capital: $ <span id="initial-capital"></span></p>
+        <div id="portfolio"></div>
+        <div id="return"></div>
+        <h2>Your Practice Portfolio:</h2>
+        <div id="capital"></div>
+        <br />
+        <div id='portfolio-container'>
+            <div class='portfolio container'>
+                <span>Symbol</span>
+                <span># of Shares</span>
+                <span>Current Price</span>
+                <span>Avg Cost</span>
+                <span>Current Value</span>
+                <span>Total Return</span>
+                <span>ROI</span>
+            </div>
+            <div id="holdings"></div>
+        </div>
+        <h2>Your Transaction History:</h2>
+        <div id="transaction-container">
+            <div class='transaction container'>
+                <span>Transaction Type</span>
+                <span>Date</span>
+                <span>Symbol</span>
+                <span># of Shares</span>
+                <span>Cost Per Share</span>
+            </div>
+        </div>
+        <h2>VOO Equivalent Account</h2>
+        <p>Below would be your holding if you bought the S&P 500 Index Fund (500) at time of account creation</p>
+        <p>Your hypothetical cash is at $<span id="hypothetical-cash"></span></p>
+        <div id='portfolio-container'>
+            <div class='portfolio container'>
+                <span>Symbol</span>
+                <span># of Shares</span>
+                <span>Current Price</span>
+                <span>Avg Cost</span>
+                <span>Current Value</span>
+                <span>Total Return</span>
+                <span>ROI</span>
+            </div>
+            <div id="holdings"></div>
+        </div>
+            <div class='voo container'>
+                <span>VOO</span>
+                <span id="voo-shares"></span>
+                <span id="voo-current-price"></span>
+                <span id="voo-initial-price"></span>
+                <span id="hypothetical-portfolio"></span>
+                <span id='hypothetical-total-return'></span>
+                <span id="hypothetical-return"></span>
+            </div>
+        
+        <h3><a href='/finance/practice/trade'>Buy/Sell Stocks</a></h3>
+        
+        <!-- <h3><a href='/finance'>Go to Net Worth</a></h3> -->
+    </body>
+</html>

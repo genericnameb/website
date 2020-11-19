@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTC-8">
+    <title>Ben</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/7c0aabd968.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <navbar>
+            <div>
+                <div id="logo-container">
+                    <a href="../index.html">
+                        <img src="../maple.jpg" alt="Pretty Tree" class="logo"/>
+                    </a>
+                    <a href="../index.html">
+                        <div id="home">Home</div>
+                    </a>
+                </div>
+            </div>
+            <div id="internal-link">
+                <div class="link-items">
+                    <a href="#">About</a>
+                </div>
+                <div class="divider">|</div>
+                <div class="link-items">
+                    <a href='../index.html#project-container'>Projects</a>
+                </div>
+                <div class="divider">|</div>
+                <div class="link-items">
+                    <a href="./contact/contact.html">Contact</a>
+                </div>
+            </div>
+
+            <div id="external-link">
+                <a href="https://www.linkedin.com/in/benjamin-sue-099b57ba/">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/genericnameb">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </navbar>
+    </header>
+    <main>
+        <div id="pic-container">
+            <img src="./other_bird.jpg" alt="Pretty Bird 2" id="bird-pic">
+        </div>
+
+        <div id="contact-container">
+            <h1>Like my site? Suggestions for improvement? Just want to reach out? Leave a comment down below</h1> 
+            <form action="/contact-me" method="POST" id="contact-form">
+                <label for="name" id="name">Name:</label>
+                <input type="text" name="name" placeholder="John Doe" required/>
+                <br />
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="john.doe@gmail.com" required/>
+                <br />
+                <label for="comments" id="comments">Comments:</label>
+                <textarea name="comments" placeholder="I think your website is awesome" required id="comment-input"></textarea>
+                <br />
+                <button type="submit" value="submit">Submit</button>
+            </form>
+            <h1>Or if you prefer, you can email me at benjamin.sue@live.ca</h1>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+
+
+</body>
+
+</html>

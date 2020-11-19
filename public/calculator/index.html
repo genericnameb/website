@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+    <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <title>React App</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component{
+        constructor(){
+          super();
+          this.state = {
+            display:"0",
+            prevDisplay:"",
+            operator:"",
+            decimal:false,
+            updateDisplay:false,
+            compute:false,
+            negative:""
+          }
+          this.handleNumber=this.handleNumber.bind(this);
+          this.handleOperator=this.handleOperator.bind(this);
+          this.handleDecimal=this.handleDecimal.bind(this);
+          this.handleEqual=this.handleEqual.bind(this);
+          this.handleClear=this.handleClear.bind(this);
+          this.handleNegative=this.handleNegative.bind(this)
+        }
+    
+    
+        handleNumber(event){
+            let number=event.target.value;
+            let newDisplay=this.state.display.concat(number);
+            if(this.state.display !== "0" && !this.state.updateDisplay){
+                this.setState({
+                    display:newDisplay
+                })
+            }
+            if(this.state.display==="0" && !this.state.updateDisplay){
+                this.setState({
+                    display:number
+                })
+            }
+            if(this.state.updateDisplay){
+                let oldDisplay=this.state.display;
+                this.setState({
+                    display:number,
+                    prevDisplay:oldDisplay,
+                    updateDisplay:false,
+                    decimal:false,
+                    compute:true
+                })
+            }
+    
+        }
+    
+        handleDecimal(){
+            if(!this.state.decimal){
+                let withDecimal=this.state.display.concat(".")
+                this.setState({
+                    display:withDecimal,
+                    decimal:true
+                })
+            }
+        }
+    
+        handleNegative(){
+            if(this.state.negative===""){
+                this.setState({
+                    negative:"-",
+                })
+            } else if(this.state.negative==="-"){
+                this.setState({
+                    negative:""
+                })
+            }
+        }
+    
+        handleOperator(event) {
+            let newOperator=event.target.value;
+            if(!this.state.compute){
+                this.setState({
+                    updateDisplay:true,
+                    operator:newOperator
+                })
+            }
+            if(this.state.compute){
+                this.handleEqual();
+                this.setState({
+                    updateDisplay:true,
+                    operator:newOperator
+                })
+            }
+        }
+    
+        handleEqual(){
+            if(this.state.compute){
+                if(this.state.negative==="-"){
+                    var currentValue = "(-"+this.state.display+")";
+                } else {currentValue = this.state.display}
+                console.log(this.state.prevDisplay + this.state.operator + currentValue)
+                let resultString=eval(this.state.prevDisplay + this.state.operator + currentValue);
+                resultString=resultString.toString();
+                if(this.state.operator+this.state.display==="/0"){
+                    alert("Not Today");
+                    resultString="0";
+                }
+    
+                this.setState({
+                    display:resultString,
+                    prevDisplay:"",
+                    updateDisplay:true,
+                    operator:"",
+                    compute:false,
+                    negative:""
+                })
+            }
+        }
+    
+        handleClear(){
+            this.setState({
+                display:"0",
+                prevDisplay:"",
+                operator:"",
+                decimal:false,
+                updateDisplay:false,
+                compute:false,
+                negative:""
+            })
+        }
+    
+        render() {
+          return (
+              <div id="background">
+                <div id="calcMe">
+                    <div id="display">{this.state.negative}{this.state.display}</div>
+                    <button onClick={this.handleClear} id="clear" className="clear">AC</button>
+                    <button onClick={this.handleOperator} value="/" id="divide" className="operator">/</button>
+                    <button onClick={this.handleOperator} value="*" id="multiply" className="operator">*</button>
+                    <button onClick={this.handleNumber} value="7" id="seven" className="number">7</button>
+                    <button onClick={this.handleNumber} value="8" id="eight" className="number">8</button>
+                    <button onClick={this.handleNumber} value="9" id="nine" className="number">9</button>
+                    <button onClick={this.handleOperator} value="-" id="subtract" className="operator">-</button>
+                    <button onClick={this.handleNumber} value="4" id="four" className="number">4</button>
+                    <button onClick={this.handleNumber} value="5" id="five" className="number">5</button>
+                    <button onClick={this.handleNumber} value="6" id="six" className="number">6</button>
+                    <button onClick={this.handleOperator} value="+" id="add" className="operator">+</button>
+                    <button onClick={this.handleNumber} value="1" id="one" className="number">1</button>
+                    <button onClick={this.handleNumber} value="2" id="two" className="number">2</button>
+                    <button onClick={this.handleNumber} value="3" id="three" className="number">3</button>
+                    <button onClick={this.handleEqual} value="=" id="equals" className="equal">=</button>
+                    <button onClick={this.handleNegative} id="negative" className="operator">+/-</button>
+                    <button onClick={this.handleNumber} value="0" id="zero" className="number">0</button>
+                    <button onClick={this.handleDecimal} id="decimal" className="decimal">.</button>
+                </div>
+              </div>
+            )
+          }
+        }
+      
+      
+      
+      ReactDOM.render(<App />,document.getElementById("root"))
+    </script>
+  </body>
+</html>

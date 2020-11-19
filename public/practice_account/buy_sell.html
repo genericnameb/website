@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Practice Account</title>
+        <style>
+            a{
+                font-size:20px;
+            }
+
+            body{
+                background-color:papayawhip;
+                font-family: 'Roboto', sans-serif;
+                margin-left:20px;
+            }
+
+            label{
+                font-size: 17px;
+            }
+
+            select{
+                border:none;
+                background-color: papayawhip;
+                width:5em;
+                height:2em;
+                margin:3px;
+                font-size:15px;
+                border-bottom:palegoldenrod solid 3px;
+            }
+
+            .input{
+                border:none;
+                background-color:papayawhip;
+                height:2em;
+                margin:3px;
+                font-size:15px;
+                border-bottom:palegoldenrod solid 3px;
+            }
+
+            #buysell-label{
+                margin-left:10px;
+            }
+
+            #price{
+                font-size:20px;
+                font-weight:bold;
+            }
+
+            #quantity-label{
+                margin-left:8px;
+            }
+
+            #stock-label{
+                margin-left:33px;
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                const DOMAIN = window.location.origin;
+                let url=window.location.href;
+                let urlArray=url.split('/')
+                let username = urlArray[urlArray.length-3]
+                // const urlOpen = "https://finnhub.io/api/v1/quote?symbol=";
+                // const urlEnd = "&token=bubpc2v48v6r5j83rvb0";
+                const STOCKURL = DOMAIN + '/api/stock/';
+                const ACCOUNTURL = DOMAIN + '/api/users/'+username;
+                const HOLDINGSURL = DOMAIN + '/api/users/'+username+'/practice/holdings'
+                let quoteQuery = document.getElementById('quote');
+                let userQuery = document.getElementById('user');
+                let holdingsQuery = document.getElementById('holdings');
+                let stockQuery = document.getElementById('stock');
+                let priceQuery = document.getElementById('price');
+                let stockData
+                let holdingsData 
+                userQuery.innerHTML = username;
+
+                // Fetch holdings API
+                async function getHoldings(){
+                        let holdingsResponse = await fetch(HOLDINGSURL);
+                        holdingsData = await holdingsResponse.json();
+                    }
+                getHoldings().then(function(){
+                    holdingsQuery.innerHTML = holdingsData[0].capital
+                })
+
+                quoteQuery.addEventListener('click', function(e){
+                    e.preventDefault();
+                    // stock data API Fetch
+
+                    async function getStockData(){
+                        let stockResponse = await fetch(STOCKURL + stockQuery.value);
+                        stockData = await stockResponse.json();
+                    }
+
+                    getStockData().then(function(){
+                        if (stockData.c === 0) {
+                            alert('Can only purchase from NYSE / stock not found')
+                        } else {
+                            priceQuery.innerHTML = 'Current Price is: $' + stockData.c.toFixed(2) + ' per share'
+                        }
+                    })
+                })
+                                            
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Welcome <span id="user"></span></h1>
+        <h2>Buy/Sell Stocks</h2> 
+        <h3>Current account holding is $<span id="holdings"></span></h3>
+        <form action='/finance/practice/trade' method="POST">
+            <label for="buy_sell" id='buysell-label'>Buy/Sell:</label>
+            <select name="transaction">
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+            </select>
+            <br />
+            <label for="stock" id='stock-label'>Stock:</label>
+            <input type="text" class='input' id="stock" name="symbol" placeholder="TSLA" required>
+            <br />
+            <label for="quantity" id='quantity-label'>Quantity:</label>
+            <input type="text" class='input' id="qty" name="qty" placeholder="Quantity" required>
+            <br />
+            <button id="quote">Quote</button>
+            <input type="submit" id="stock-submit">
+        </form>
+        <br />
+        <div id="price"></div>
+        <br />
+        <a href='/finance/practice'>Go Back</a>
+
+    </body>
+</html>
