@@ -158,7 +158,6 @@ document.addEventListener('DOMContentLoaded',function () {
         temp=string.split('');
         temp.pop();
         string=temp.join('');
-        console.log(string);
         if (removeContentLength == 0){
             clearInterval(removeStringTimingInterval);
             temp=[];

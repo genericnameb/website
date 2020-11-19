@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',function () {
     upperQuery.style.left = pixelHeight + 'px';
 
     upperTextQuery.style.left = displaceLeft + 33 + 'vw';
-    cokeZeroQuery.style.left = displaceLeft + 18 + 'vw';
+    cokeZeroQuery.style.left = displaceLeft + 21 + 'vw';
 
 
     document.getElementById('target').addEventListener('mousemove', function(location){
