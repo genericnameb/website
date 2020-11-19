@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const LocalStrategy = require('passport-local').Strategy
 const express = require('express');
 const path = require('path');
