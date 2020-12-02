@@ -146,7 +146,7 @@
                                     let totalCost = (currentShares * shareCost)
                                     let totalReturn = currentValue - totalCost;
                                     let ROI = (totalReturn/totalCost * 100).toFixed(2);
-                                    newHolding.innerHTML = `<span>${holdingsData[i]}</span><span>${currentShares}</span><span>$</span>${currentPrice.toFixed(2)}<span>$${shareCost.toFixed(2)}</span><span>$${currentValue.toFixed(2)}</span><span>$${totalReturn.toFixed(2)}</span><span>${ROI}%</span>`
+                                    newHolding.innerHTML = `<span>${holdingsData[i]}</span><span>${currentShares}</span><span>$${currentPrice.toFixed(2)}</span><span>$${shareCost.toFixed(2)}</span><span>$${currentValue.toFixed(2)}</span><span>$${totalReturn.toFixed(2)}</span><span>${ROI}%</span>`
                                     holdingsQuery.appendChild(newHolding);
                                     overallValue = overallValue + currentValue
                                     let asset = overallValue+capital
